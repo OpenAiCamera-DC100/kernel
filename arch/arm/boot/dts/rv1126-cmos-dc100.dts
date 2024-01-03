@@ -1,0 +1,16 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright (c) 2023 cmosmediatech Co., Ltd.
+ */
+/dts-v1/;
+#include "rv1126.dtsi"
+#include "rv1126-cmos-dc100.dtsi"
+/ {
+	model = "Rockchip RV1126 cmosmediatech dc100 Board";
+	compatible = "rockchip,rv1126-cmos-dc100", "rockchip,rv1126";
+
+	chosen {
+		bootargs = "earlycon=uart8250,mmio32,0xff570000 console=ttyFIQ0 root=PARTUUID=614e0000-0000 rootwait snd_aloop.index=7 vmalloc=400M";
+	};
+};
+

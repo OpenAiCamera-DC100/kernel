@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright (c) 2020 Rockchip Electronics Co., Ltd.
+ */
+/dts-v1/;
+#include "rv1126.dtsi"
+#include "rv1126-cmos-sf100.dtsi"
+/ {
+	model = "cmosmedia Core-RV1126-sf100 Board";
+	compatible ="rockchip,rv1126";
+};
