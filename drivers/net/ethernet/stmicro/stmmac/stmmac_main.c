@@ -4307,6 +4307,50 @@ static int phy_rtl8211f_led_fixup(struct phy_device *phydev)
     phy_read(phydev, 31);
     phy_write(phydev, 31, 0x00);
 
+    //CLK_OUT Disable Register
+    phy_write(phydev, 31, 0xa43);
+    mdelay(10);
+    value = phy_read(phydev, 25);
+    printk("reg %d\n", value);
+    value &= 0xfffe;
+    printk("reg %d\n", value);
+    phy_write(phydev, 25, value);
+    mdelay(10);
+    phy_write(phydev, 31, 0x00);
+    mdelay(10);
+    phy_write(phydev, 0, 0x9200);
+
+    //Enable RXC SSC
+    mdelay(10);
+    phy_write(phydev, 31, 0x0C44);
+    mdelay(10);
+    phy_write(phydev, 19, 0x5F00);
+    mdelay(10);
+    phy_write(phydev, 31, 0x0000);
+    mdelay(10);
+    phy_write(phydev, 0, 0x9200);
+
+    //Enable System Clock SSC
+    mdelay(10);
+    phy_write(phydev, 31, 0x0C44);
+    mdelay(10);
+    phy_write(phydev, 23, 0x4F00);
+    mdelay(10);
+    phy_write(phydev, 31, 0xa43);
+    mdelay(10);
+    value = phy_read(phydev, 25);
+    printk("reg %d\n", value);
+    mdelay(10);
+    value = 2150;
+    phy_write(phydev, 25, value);
+    mdelay(10);
+    value = phy_read(phydev, 25);
+    printk("reg %d\n", value);
+    mdelay(10);
+    phy_write(phydev, 31, 0x0000);
+    mdelay(10);
+    phy_write(phydev, 0, 0x9200);
+
     return 0;
 }
 
